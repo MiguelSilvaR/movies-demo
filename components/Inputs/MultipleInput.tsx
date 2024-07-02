@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import styles from "./inputs.module.css"
 
+import { v4 as uuidv4 } from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -19,14 +20,14 @@ export default function MultipleInput({title,id,value}:any) {
             value = [value];
         let arr:any[] = [];
         value.forEach((el:any) => {
-            const key = window.crypto.randomUUID();
+            const key = uuidv4();
             arr.push({key, value: el})
         });
         setInputs(arr);
     }, [])
 
     const onClickHandlerAdd = () => {
-        const key = window.crypto.randomUUID();
+        const key = uuidv4();
         setInputs([...inputs, { key }]);
     };
 
