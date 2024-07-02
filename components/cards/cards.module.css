@@ -1,0 +1,100 @@
+
+.card {
+    background-color: #464141; /* Color gris claro para contraste */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidad */
+    overflow: hidden;
+    width: 300px;
+    height: 575px;
+    margin: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Sombra más intensa al pasar el cursor */
+}
+
+/* Estilos de la imagen de la tarjeta */
+.card_image {
+    width: 100%;
+    height: auto;
+}
+
+/* Contenido de la tarjeta */
+.card_content {
+    padding: 20px;
+}
+
+/* Título de la tarjeta */
+.card_title {
+    font-family: Optima;
+    font-size: 1.5em;
+    margin: 0;
+    text-align: center;
+}
+
+/* Descripción de la tarjeta */
+.card_description {
+    font-family: Arial;
+    margin-top: 10px;
+    font-size: 0.9em;
+    line-height: 1.4;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+}
+
+.button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+    height: 40px;
+}
+
+.button:hover {
+    transform: scale(1.05);
+}
+
+.view-more {
+    background-color: #006400;
+    color: white;
+    margin-right: auto;
+}
+
+.view-more:hover {
+    background-color: #28a745;
+}
+
+.delete {
+    background-color: #6E0808;
+    color: white;
+}
+
+.delete:hover {
+    background-color: #c82333;
+}
+
+.update {
+    background-color: #191970;
+    color: white;
+}
+
+.update:hover {
+    background-color: #007bff;
+}
+
+.button_wrapper {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 1em;
+}

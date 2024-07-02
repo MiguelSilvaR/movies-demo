@@ -1,0 +1,41 @@
+/* movie.module.css */
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 70vw;
+    background-color: #464141;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+.card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.card ul li {
+    background-color: rgb(98, 98, 98);
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.card ul li:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+}
+
+.info_wrapper {
+    margin: 1em 0;
+}
