@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 import Cards from "@/components/cards/Cards";
 
@@ -8,8 +8,9 @@ import styles from "@/components/pagination/pagination.module.css";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faArrowLeft, faArrowRight, faSpinner } from '@fortawesome/free-solid-svg-icons';
-library.add(faArrowLeft, faArrowRight, faSpinner);
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import Spin from "../spin/Spin";
+library.add(faArrowLeft, faArrowRight );
 
 export default function Pagination() {
 
@@ -47,9 +48,7 @@ export default function Pagination() {
     return (
         <div>
             {loading ? (
-                <div className={styles.spin}>
-                    <FontAwesomeIcon icon="spinner" spin/> 
-                </div>
+               <Spin/>
             ) : (
                 
                 <div className={styles.card_layout}>
@@ -74,7 +73,7 @@ export default function Pagination() {
                         </button>
                     </div>
                     :
-                    null
+                    <Fragment/>
 
             }
         </div>

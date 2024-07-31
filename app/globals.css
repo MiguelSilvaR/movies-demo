@@ -84,3 +84,12 @@ h1, h2, h3, h4, p, li, svg {
   text-decoration: underline;
   color: white; 
 }
+
+.spin {
+  font-size: 4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+  height: 75vh;
+}

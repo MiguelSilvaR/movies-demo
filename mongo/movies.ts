@@ -88,3 +88,26 @@ export async function createMovie(newMovie: Object): Promise<InsertOneResult> {
         await client.close();
     }
 }
+
+export async function getRankPerYear(year:number) {
+    const client: MongoClient = (await MongoConnection.getConnection()).getConn();
+    try {
+        const collection = await getMoviesColl(client);
+        const res = (await collection.aggregate(
+            [
+                {$match: {year , gross : {$ne: null}}},
+                {$sql:`select json_mergepatch(i.data, json {'rank': rank() over (order by i.data."gross" desc)}) 
+                        from input i`},
+                {$project: { rank: 1, year: 1, title: 1, gross: 1, "_id": 0 }},
+                {$match: {rank : {$le : 10}}},
+                {$sort: {rank: 1}}
+            ]
+        ));
+        return await res.toArray();
+ 
+    } catch (err:any) {
+        throw new Error(err);
+    } finally {
+        await client.close();
+    }
+}

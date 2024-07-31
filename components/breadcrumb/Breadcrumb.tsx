@@ -13,7 +13,8 @@ export default function Breadcrumb({params}: any) {
     const paths = new Map<string,string>([
         ['movie', "View Movie"],
         ['update_movie', "Edit movie"],
-        ['create_movie', "Create movie"]
+        ['create_movie', "Create movie"],
+        ['analytics', "Analytics"]
     ])
 
     const pathname = usePathname();
