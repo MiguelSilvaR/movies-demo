@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import styles from "./movie.module.css";
 import { getMovie } from "@/mongo/movies";
+import { Fragment } from 'react';
 
 function InfoComponent({title, value, regular = true}:any) {
     return (
@@ -57,6 +58,12 @@ export default async function MovieComponent({ params }:any) {
             />
             <InfoComponent title={"Runtime"} value={validateField(doc.runtime)}/>
             <InfoComponent title={"Gross"} value={validateField(doc.gross)}/>
+            {
+                !doc.adjGross ? 
+                <Fragment/>
+                :
+                <InfoComponent title={"Adjusted Gross"} value={validateField(doc.adjGross)}/>
+            }
             <InfoComponent 
                 title={"Cast"} 
                 value={

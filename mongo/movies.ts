@@ -10,13 +10,17 @@ async function getMoviesColl(client: MongoClient):Promise<Collection> {
     return collection;
 }
 
+function getNextCursor(collection: Collection, page: number) {
+    return collection.find({}).sort({title:1}).skip((page + 1) * BATCH_SIZE).limit(1);
+}
+
 export async function getMovies(actualPage: number): Promise<Object>{
     const client: MongoClient = (await MongoConnection.getConnection()).getConn();
     try {
         const collection = await getMoviesColl(client);
 
-        const cursor = await collection.find({}).sort({title:1}).skip(actualPage * BATCH_SIZE).limit(BATCH_SIZE);
-        const nextCursor = await collection.find({}).sort({title:1}).skip((actualPage + 1) * BATCH_SIZE).limit(1);
+        const cursor = collection.find({}).sort({title:1}).skip(actualPage * BATCH_SIZE).limit(BATCH_SIZE);
+        const nextCursor = getNextCursor(collection, actualPage);
 
         const docs = await cursor.toArray();
         const hasNext = await nextCursor.hasNext();
@@ -93,7 +97,7 @@ export async function getRankPerYear(year:number) {
     const client: MongoClient = (await MongoConnection.getConnection()).getConn();
     try {
         const collection = await getMoviesColl(client);
-        const res = (await collection.aggregate(
+        const res = collection.aggregate(
             [
                 {$match: {year , gross : {$ne: null}}},
                 {$sql:`select json_mergepatch(i.data, json {'rank': rank() over (order by i.data."gross" desc)}) 
@@ -102,7 +106,7 @@ export async function getRankPerYear(year:number) {
                 {$match: {rank : {$le : 10}}},
                 {$sort: {rank: 1}}
             ]
-        ));
+        );
         return await res.toArray();
  
     } catch (err:any) {
